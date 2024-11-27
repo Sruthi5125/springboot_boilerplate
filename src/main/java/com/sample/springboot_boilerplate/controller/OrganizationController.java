@@ -2,6 +2,7 @@ package com.sample.springboot_boilerplate.controller;
 
 import com.sample.springboot_boilerplate.dto.OrganizationDTO;
 import com.sample.springboot_boilerplate.dto.ProductDTO;
+import com.sample.springboot_boilerplate.dto.EmployeeDTO;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import com.sample.springboot_boilerplate.exception.ResourceNotFoundException;
 import com.sample.springboot_boilerplate.service.OrganizationService;
@@ -34,6 +35,11 @@ public class OrganizationController {
         return ResponseEntity.ok(products);
     }
 
+    @GetMapping("/{id}/employee/list")
+    public ResponseEntity<List<EmployeeDTO>> getEmployeeList(@PathVariable("id") Integer id) {
+        List<EmployeeDTO> employees = organizationService.getEmployeeList(id);
+        return ResponseEntity.ok(employees);
+    }
 
     @GetMapping("/get/{id}")
     public ResponseEntity<?> getOrganizationById(@PathVariable Integer id) {
